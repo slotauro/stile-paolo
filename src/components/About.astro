@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import teamImage from '../assets/images/team.jpg';
+import { site, yearsInBusiness } from '../data/site';
+
+const facts = [
+  { value: `${yearsInBusiness}+`, label: 'Jahre Erfahrung in Paderborn' },
+  { value: 'Sassoon', label: 'Fortbildungen bei Vidal Sassoon & Wella' },
+  { value: '4', label: 'Premium-Marken für Ihr Haar' },
+];
+---
+
+<section id="ueber-uns" class="py-24 sm:py-32">
+  <div class="container-page grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
+    <div>
+      <p class="eyebrow" data-reveal>Über uns</p>
+      <h2 class="heading mt-4" data-reveal>
+        Ihre Frisur ist Ausdruck <em class="text-coral-dark">Ihrer Persönlichkeit.</em>
+      </h2>
+      <div class="mt-8 space-y-5 text-lg leading-relaxed text-ink-soft" data-reveal>
+        <p>
+          Seit über {yearsInBusiness} Jahren begleiten wir unsere Kundinnen und Kunden in der Paderborner
+          Innenstadt – mit persönlicher Beratung, italienischem Charme und einer familiären Atmosphäre,
+          in der man sich sofort wohlfühlt.
+        </p>
+        <p>
+          Lehnen Sie sich zurück, genießen Sie eine Tasse frisch gebrühten Kaffee und lassen Sie sich
+          von uns verwöhnen. Wir nehmen uns Zeit, hören zu und finden gemeinsam den Look, der zu Ihnen
+          passt – <span class="font-serif text-xl text-ink italic">{site.slogan}</span>
+        </p>
+        <p>
+          Damit wir immer am Puls der Zeit bleiben, bilden wir uns regelmäßig weiter, unter anderem bei
+          Vidal Sassoon und Wella. Allen langjährigen Kundinnen und Kunden danken wir von Herzen für ihr
+          Vertrauen.
+        </p>
+      </div>
+
+      <dl class="mt-12 grid grid-cols-3 gap-4 border-t border-ink/10 pt-8">
+        {
+          facts.map((fact, i) => (
+            <div data-reveal style={`--delay: ${i * 100}ms`}>
+              <dt class="sr-only">{fact.label}</dt>
+              <dd class="font-serif text-3xl font-semibold text-ink sm:text-4xl">{fact.value}</dd>
+              <dd class="mt-1 text-xs leading-snug text-ink-soft sm:text-sm">{fact.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="relative" data-reveal>
+      <div class="absolute -top-6 -right-6 hidden h-2/3 w-2/3 rounded-[2rem] bg-peach/40 sm:block" aria-hidden="true"></div>
+      <Image
+        src={teamImage}
+        alt="Das Team von Stile Paolo: Alisa, Paolo und Tatjana"
+        widths={[480, 800, 1024]}
+        sizes="(min-width: 1024px) 45vw, 100vw"
+        class="relative aspect-[4/3] w-full rounded-[2rem] object-cover object-center shadow-2xl shadow-ink/15"
+      />
+      <figure class="relative mx-6 -mt-10 max-w-[17rem] rounded-2xl bg-white p-5 shadow-xl shadow-ink/10 sm:absolute sm:-bottom-8 sm:-left-8 sm:mx-0 sm:mt-0">
+        <figcaption class="text-xs font-semibold tracking-wider text-coral-dark uppercase">Unser Leitsatz</figcaption>
+        <p class="mt-2 font-serif text-xl leading-snug italic">{site.motto.join(' – ')}</p>
+      </figure>
+    </div>
+  </div>
+</section>

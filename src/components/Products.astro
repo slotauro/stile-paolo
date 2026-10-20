@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import salonImage from '../assets/images/paolo-theke.jpg';
+
+const brands = ['Olaplex', 'Wella', 'Moroccanoil', 'Selective On Care'];
+---
+
+<section class="overflow-hidden bg-ink py-24 text-white sm:py-32">
+  <div class="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+    <div class="order-2 lg:order-1" data-reveal>
+      <Image
+        src={salonImage}
+        alt="Paolo vor dem Regal mit Olaplex- und Pflegeprodukten im Salon"
+        widths={[480, 800, 1024]}
+        sizes="(min-width: 1024px) 45vw, 100vw"
+        class="aspect-[5/4] w-full rounded-[2rem] object-cover object-center"
+      />
+    </div>
+    <div class="order-1 lg:order-2">
+      <p class="eyebrow !text-peach" data-reveal>Premium-Produkte</p>
+      <h2 class="heading mt-4" data-reveal>Nur das Beste für Ihr Haar</h2>
+      <p class="mt-6 text-lg leading-relaxed text-white/75" data-reveal>
+        Wir arbeiten ausschließlich mit Produkten, von deren Qualität wir überzeugt sind – für
+        brillante Farben, gesundes Haar und Pflege, die man spürt. Gerne beraten wir Sie, welche
+        Pflege zu Ihnen passt.
+      </p>
+      <ul class="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10" data-reveal>
+        {
+          brands.map((brand) => (
+            <li class="bg-ink px-5 py-6 text-center font-serif text-2xl tracking-wide sm:text-3xl">{brand}</li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

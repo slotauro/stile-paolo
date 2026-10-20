@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/arbeit.jpg';
+import { site } from '../data/site';
+---
+
+<section class="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night text-white">
+  <Image
+    src={heroImage}
+    alt="Paolo schneidet einem Kunden im Salon am Fenster die Haare"
+    widths={[640, 960, 1498]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_30%]"
+  />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/60 to-night/20 lg:bg-gradient-to-r lg:from-night/95 lg:via-night/55 lg:to-transparent"></div>
+
+  <div class="container-page pt-32 pb-20 sm:pb-28">
+    <div class="max-w-2xl">
+      <p class="eyebrow !text-peach" data-reveal>Friseur in Paderborn · Damen · Herren · Kinder</p>
+      <h1 class="mt-5 font-serif text-6xl leading-[0.95] font-medium sm:text-7xl lg:text-8xl" data-reveal style="--delay: 100ms">
+        {site.name}
+      </h1>
+      <p class="mt-4 font-serif text-3xl text-peach italic sm:text-4xl" data-reveal style="--delay: 200ms">
+        {site.slogan}
+      </p>
+      <p class="mt-6 flex flex-wrap gap-x-3 text-sm tracking-[0.2em] text-white/75 uppercase" data-reveal style="--delay: 300ms">
+        {site.motto.map((word, i) => <>{i > 0 && <span aria-hidden="true" class="text-coral">·</span>}<span>{word}</span></>)}
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4" data-reveal style="--delay: 400ms">
+        <a href={site.phoneHref} class="btn-primary">Termin vereinbaren</a>
+        <a href="#preise" class="btn-ghost text-white">Preise ansehen</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#ueber-uns" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/60 transition hover:text-white sm:block" aria-label="Weiter nach unten">
+    <svg aria-hidden="true" class="size-6 animate-bounce motion-reduce:animate-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+  </a>
+</section>
